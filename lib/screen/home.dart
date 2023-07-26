@@ -14,6 +14,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String? hello = 'Hello World';
+  List<User> _users = [];
+  int pageNumber = 1;
   @override
   void initState() {
     // TODO: implement initState
@@ -39,20 +41,54 @@ class _HomeState extends State<Home> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       drawer: const MainDrawer(),
-      body: Center(
-        child: Container(
-          child: Text(hello.toString()),
-        ),
-      ),
+      body: Column(
+        children: [
+          Row(
+            children: [
+              Text('Page Number: $pageNumber'),
+              pageNumber > 1 ? InkWell(onTap: () {
+                setState(() {
+                  pageNumber--;
+                  _users = [];
+                  getUsers();
+                });
+              } ,child: Icon(Icons.arrow_circle_left)) : SizedBox(),
+              InkWell(onTap: () {
+                setState(() {
+                  pageNumber++;
+                  _users = [];
+                  getUsers();
+                });
+              } ,child: Icon(Icons.arrow_circle_right)),
+            ],
+          ),
+          Expanded(
+            child: _users.isEmpty ? Center(child: CircularProgressIndicator(),) : ListView.builder(
+              itemCount: _users.length,
+              itemBuilder: (BuildContext context, index) {
+                return ListTile(
+                  leading: Icon(Icons.account_circle),
+                  title: Text(_users[index].name.toString()),
+                  subtitle: Text(_users[index].email.toString()),
+                );
+              },
+
+            ),
+          ),
+        ],
+      )
     );
   }
 
   getUsers() async{
-    var url = 'users?page=1';
+    var url = 'users?page='+pageNumber.toString();
     var response = await Network().httpRequestWithHeader(url);
     // print(response.body);
 
     UsersModel usersModel = UsersModel.fromJson(jsonDecode(response.body));
+    setState(() {
+      _users = usersModel.data!;
+    });
     print(usersModel);
   }
 }
