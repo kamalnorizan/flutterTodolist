@@ -67,7 +67,9 @@ class _HomeState extends State<Home> {
               itemCount: _users.length,
               itemBuilder: (BuildContext context, index) {
                 return ListTile(
-                  leading: Icon(Icons.account_circle),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(_users[index].profilepicture.toString()),
+                  ),
                   title: Text(_users[index].name.toString()),
                   subtitle: Text(_users[index].email.toString()),
                 );
