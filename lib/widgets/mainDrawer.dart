@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({
@@ -29,7 +30,19 @@ class MainDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.pushReplacementNamed(context, '/kalkulator');
             },
-          )
+          ),
+          ListTile(
+            leading: const Icon(Icons.calculate),
+            title: const Text('Log Keluar'),
+            onTap: () async{
+              SharedPreferences localStorage = await SharedPreferences.getInstance();
+              localStorage.remove('token');
+              localStorage.remove('name');
+              localStorage.remove('id');
+              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, '/login');
+            },
+          ),
         ],
       ),
     );
