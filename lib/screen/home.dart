@@ -72,7 +72,7 @@ class _HomeState extends State<Home> {
                     backgroundImage: NetworkImage(_users[index].profilepicture.toString()),
                   ),
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>UserDetail()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>UserDetail(_users[index])));
                   },
                   title: Text(_users[index].name.toString()),
                   subtitle: Text(_users[index].email.toString()),
