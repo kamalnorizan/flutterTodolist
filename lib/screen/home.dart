@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todolist/widgets/mainDrawer.dart';
+
+import '../models/usersmodel.dart';
+import '../network_utils/connect.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -14,6 +19,7 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
     super.initState();
     getName();
+    getUsers();
   }
 
   getName() async{
@@ -39,5 +45,14 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+  }
+
+  getUsers() async{
+    var url = 'users?page=1';
+    var response = await Network().httpRequestWithHeader(url);
+    // print(response.body);
+
+    UsersModel usersModel = UsersModel.fromJson(jsonDecode(response.body));
+    print(usersModel);
   }
 }

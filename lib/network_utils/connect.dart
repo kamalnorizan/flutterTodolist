@@ -14,7 +14,6 @@ class Network{
   }
 
   httpRequestWithHeader(apiUrl) async {
-
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var token = localStorage.getString('token');
     Map<String, String> headers = {
