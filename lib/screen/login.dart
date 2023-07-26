@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:todolist/models/loginmodel.dart';
 import 'package:todolist/network_utils/connect.dart';
 import 'package:todolist/widgets/mainDrawer.dart';
 
@@ -22,6 +25,8 @@ class _LoginState extends State<Login> {
   String? _validatePassword(String? value){
     if(value==''){
       return 'Sila masukkan Kata Laluan';
+    }else if(value=='invalid username or password'){
+      return value;
     }
     return null;
   }
@@ -36,8 +41,14 @@ class _LoginState extends State<Login> {
       };
       String apiUrl = 'authaccount/login';
       var res = await Network().authaccount(data, apiUrl);
-      print(res.body);
-      // Navigator.pushReplacementNamed(context, '/home');
+      var body = LoginModel.fromJson(jsonDecode(res.body));
+      if(body.code==0){
+        Navigator.pushReplacementNamed(context, '/home');
+      }else{
+        setState(() {
+          _validateUsername(body.message);
+        });
+      }
     }
   }
 
