@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todolist/screen/userDetail.dart';
 import 'package:todolist/widgets/mainDrawer.dart';
 
 import '../models/usersmodel.dart';
@@ -70,6 +71,9 @@ class _HomeState extends State<Home> {
                   leading: CircleAvatar(
                     backgroundImage: NetworkImage(_users[index].profilepicture.toString()),
                   ),
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>UserDetail()));
+                  },
                   title: Text(_users[index].name.toString()),
                   subtitle: Text(_users[index].email.toString()),
                 );
