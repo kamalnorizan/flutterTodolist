@@ -36,6 +36,7 @@ class MainDrawer extends StatelessWidget {
             title: const Text('Log Keluar'),
             onTap: () async{
               SharedPreferences localStorage = await SharedPreferences.getInstance();
+              // localStorage.clear();
               localStorage.remove('token');
               localStorage.remove('name');
               localStorage.remove('id');

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todolist/screen/home.dart';
 import 'package:todolist/screen/login.dart';
+import 'package:todolist/screen/register.dart';
 
 import 'screen/myFirstScreen.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MyHomePage(),
         '/login': (context) => Login(),
+        '/register': (context) => Register(),
         '/home' : (context) => Home(),
         '/kalkulator': (context) => MyFirstScreen()
       },

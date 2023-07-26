@@ -103,7 +103,9 @@ class _LoginState extends State<Login> {
                         const SizedBox(width: 20,),
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: (){},
+                            onPressed: (){
+                                Navigator.pushReplacementNamed(context, '/register');
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.green,
                               foregroundColor: Colors.white,
