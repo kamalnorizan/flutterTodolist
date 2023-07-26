@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todolist/models/loginmodel.dart';
 import 'package:todolist/network_utils/connect.dart';
 import 'package:todolist/widgets/mainDrawer.dart';
@@ -43,14 +44,13 @@ class _LoginState extends State<Login> {
       var res = await Network().authaccount(data, apiUrl);
       var body = LoginModel.fromJson(jsonDecode(res.body));
       if(body.code==0){
+        SharedPreferences localStorage = await SharedPreferences.getInstance();
+        localStorage.setString('token', body.data!.Token);
+        localStorage.setString('name', body.data!.Name);
+        localStorage.setInt('id', body.data!.Id);
         Navigator.pushReplacementNamed(context, '/home');
       }else{
         _showAlertDialog(context, 'Ralat', body.message);
-        // setState(() {
-        //   _validateUsername(body.message);
-        //   _formKey.currentState!.validate();
-        // });
-
       }
     }
   }
