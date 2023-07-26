@@ -45,9 +45,12 @@ class _LoginState extends State<Login> {
       if(body.code==0){
         Navigator.pushReplacementNamed(context, '/home');
       }else{
-        setState(() {
-          _validateUsername(body.message);
-        });
+        _showAlertDialog(context, 'Ralat', body.message);
+        // setState(() {
+        //   _validateUsername(body.message);
+        //   _formKey.currentState!.validate();
+        // });
+
       }
     }
   }
@@ -116,6 +119,23 @@ class _LoginState extends State<Login> {
             ),
           ),
         ),
+    );
+  }
+
+  void _showAlertDialog(BuildContext context, String title, String msg){
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: Text(title),
+              content: Text(msg),
+              actions: [
+                TextButton(onPressed: (){
+                  Navigator.of(context).pop();
+                }, child: Text('Ok'))
+              ]
+          );
+        }
     );
   }
 }

@@ -2,24 +2,30 @@ class LoginModel {
   LoginModel({
     required this.code,
     required this.message,
-    required this.data,
+    this.data,
   });
 
   late final int code;
   late final String message;
-  late final Data data;
+  late final Data? data;
 
   LoginModel.fromJson(Map<String, dynamic> json){
     code = json['code'];
     message = json['message'];
-    data = Data.fromJson(json['data']);
+    if(json['data'] != null) {
+      data = Data.fromJson(json['data']);
+    }else{
+      data = null;
+    }
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['code'] = code;
     _data['message'] = message;
-    _data['data'] = data.toJson();
+    if(data != null){
+      _data['data'] = data!.toJson();
+    }
     return _data;
   }
 }
