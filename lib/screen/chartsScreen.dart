@@ -100,14 +100,35 @@ class ChartScreen extends StatelessWidget {
       drawer: const MainDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(18),
-        child: BarChart(BarChartData(
-            barTouchData: barTouchData,
-            titlesData: titlesData,
-            borderData: borderData,
-            barGroups: barGroups,
-            gridData: const FlGridData(
-                drawVerticalLine: false, drawHorizontalLine: true),
-            maxY: 20)),
+        child: Column(
+          children: [
+            Text(
+              'Laporan Harian',
+              style: TextStyle(
+                fontSize: 25,
+              ),
+            ),
+            Expanded(
+              child: BarChart(BarChartData(
+                  barTouchData: barTouchData,
+                  titlesData: titlesData,
+                  borderData: borderData,
+                  barGroups: barGroups,
+                  gridData: const FlGridData(
+                      drawVerticalLine: false, drawHorizontalLine: true),
+                  maxY: 20)),
+            ),Expanded(
+              child: BarChart(BarChartData(
+                  barTouchData: barTouchData,
+                  titlesData: titlesData,
+                  borderData: borderData,
+                  barGroups: barGroups,
+                  gridData: const FlGridData(
+                      drawVerticalLine: false, drawHorizontalLine: true),
+                  maxY: 20)),
+            ),
+          ],
+        ),
       ),
     );
   }
