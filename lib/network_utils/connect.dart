@@ -23,4 +23,15 @@ class Network{
     var fullUrl = _url + apiUrl;
     return await http.get(Uri.parse(fullUrl), headers: headers);
   }
+
+  httpDeleteRequestWithHeader(apiUrl) async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var token = localStorage.getString('token');
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+ token.toString()
+    };
+    var fullUrl = _url + apiUrl;
+    return await http.delete(Uri.parse(fullUrl), headers: headers);
+  }
 }
