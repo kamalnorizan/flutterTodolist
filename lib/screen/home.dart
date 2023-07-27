@@ -89,7 +89,6 @@ class _HomeState extends State<Home> {
   getUsers() async{
     var url = 'users?page='+pageNumber.toString();
     var response = await Network().httpRequestWithHeader(url);
-    // print(response.body);
 
     UsersModel usersModel = UsersModel.fromJson(jsonDecode(response.body));
     setState(() {
