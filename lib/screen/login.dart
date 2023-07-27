@@ -72,7 +72,8 @@ class _LoginState extends State<Login> {
                 child: Column(
                   children: [
                     const SizedBox(height: 100,),
-                    Image.asset('assets/mains.png'),
+                    Hero(tag: 'logo',
+                    child: Image.asset('assets/mains.png')),
                     const SizedBox(height: 20,),
                     TextFormField(
                         controller: usernameEC,

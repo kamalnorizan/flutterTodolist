@@ -82,6 +82,18 @@ class _MainDrawerState extends State<MainDrawer> {
             },
           ),
           ListTile(
+            leading: const Icon(Icons.animation),
+            title: const Text(
+              'Animation',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, '/animation');
+            },
+          ),
+          ListTile(
             leading: const Icon(Icons.calculate),
             title: const Text('Kalkulator'),
             subtitle: const Text('Zakat Pendapatan'),

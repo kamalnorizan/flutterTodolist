@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todolist/screen/animationScreen.dart';
 import 'package:todolist/screen/chartsScreen.dart';
 import 'package:todolist/screen/home.dart';
 import 'package:todolist/screen/login.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => Login(),
         '/register': (context) => Register(),
         '/home' : (context) => Home(),
+        '/animation' : (context) => AnimationScreen(),
         '/charts' : (context) => ChartScreen(),
         '/kalkulator': (context) => MyFirstScreen()
       },
