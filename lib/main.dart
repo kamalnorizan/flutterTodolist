@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todolist/screen/animationScreen.dart';
 import 'package:todolist/screen/chartsScreen.dart';
+import 'package:todolist/screen/gmapsScreen.dart';
 import 'package:todolist/screen/home.dart';
 import 'package:todolist/screen/login.dart';
 import 'package:todolist/screen/register.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => MyHomePage(),
         '/login': (context) => Login(),
         '/register': (context) => Register(),
+        '/gmap': (context) => GMapScreen(),
         '/home' : (context) => Home(),
         '/animation' : (context) => AnimationScreen(),
         '/charts' : (context) => ChartScreen(),

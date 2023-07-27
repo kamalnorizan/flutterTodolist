@@ -94,6 +94,18 @@ class _MainDrawerState extends State<MainDrawer> {
             },
           ),
           ListTile(
+            leading: const Icon(Icons.map),
+            title: const Text(
+              'Maps',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, '/gmap');
+            },
+          ),
+          ListTile(
             leading: const Icon(Icons.calculate),
             title: const Text('Kalkulator'),
             subtitle: const Text('Zakat Pendapatan'),
