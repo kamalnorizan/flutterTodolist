@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../widgets/mainDrawer.dart';
 
 class ChartScreen extends StatelessWidget {
-
   BarTouchData barTouchData = BarTouchData(
     enabled: false,
   );
@@ -33,14 +32,62 @@ class ChartScreen extends StatelessWidget {
         show: false,
       );
 
+  LinearGradient get _barsGradient => const LinearGradient(
+        colors: [Colors.blueAccent, Colors.lightBlueAccent],
+        begin: Alignment.bottomCenter,
+        end: Alignment.topCenter,
+      );
+
   List<BarChartGroupData> get barGroups => [
-        BarChartGroupData(x: 0, barRods: [BarChartRodData(toY: 8)]),
-        BarChartGroupData(x: 1, barRods: [BarChartRodData(toY: 15)]),
-        BarChartGroupData(x: 2, barRods: [BarChartRodData(toY: 9)]),
-        BarChartGroupData(x: 3, barRods: [BarChartRodData(toY: 18)]),
-        BarChartGroupData(x: 4, barRods: [BarChartRodData(toY: 5)]),
-        BarChartGroupData(x: 5, barRods: [BarChartRodData(toY: 18)]),
-        BarChartGroupData(x: 6, barRods: [BarChartRodData(toY: 9)]),
+        BarChartGroupData(x: 0, barRods: [
+          BarChartRodData(
+            toY: 8,
+            gradient: _barsGradient,
+            width: 25,
+          )
+        ]),
+        BarChartGroupData(x: 1, barRods: [
+          BarChartRodData(
+            toY: 15,
+            gradient: _barsGradient,
+            width: 25,
+          )
+        ]),
+        BarChartGroupData(x: 2, barRods: [
+          BarChartRodData(
+            toY: 9,
+            gradient: _barsGradient,
+            width: 25,
+          )
+        ]),
+        BarChartGroupData(x: 3, barRods: [
+          BarChartRodData(
+            toY: 18,
+            gradient: _barsGradient,
+            width: 25,
+          )
+        ]),
+        BarChartGroupData(x: 4, barRods: [
+          BarChartRodData(
+            toY: 5,
+            gradient: _barsGradient,
+            width: 25,
+          )
+        ]),
+        BarChartGroupData(x: 5, barRods: [
+          BarChartRodData(
+            toY: 18,
+            gradient: _barsGradient,
+            width: 25,
+          )
+        ]),
+        BarChartGroupData(x: 6, barRods: [
+          BarChartRodData(
+            toY: 9,
+            gradient: _barsGradient,
+            width: 25,
+          )
+        ]),
       ];
 
   @override
@@ -54,16 +101,13 @@ class ChartScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(18),
         child: BarChart(BarChartData(
-          barTouchData: barTouchData,
-          titlesData: titlesData,
-          borderData: borderData,
-          barGroups: barGroups,
-          gridData: const FlGridData(
-            drawVerticalLine: false,
-            drawHorizontalLine: true
-          ),
-          maxY: 20
-        )),
+            barTouchData: barTouchData,
+            titlesData: titlesData,
+            borderData: borderData,
+            barGroups: barGroups,
+            gridData: const FlGridData(
+                drawVerticalLine: false, drawHorizontalLine: true),
+            maxY: 20)),
       ),
     );
   }
