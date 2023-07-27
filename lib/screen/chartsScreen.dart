@@ -102,22 +102,55 @@ class ChartScreen extends StatelessWidget {
         padding: const EdgeInsets.all(18),
         child: Column(
           children: [
-            Text(
+            Row(
+              children: [
+                Expanded(
+                  child: StatCard(
+                      title: 'Jumlah Jualan',
+                      value: '20,000',
+                      bgColor: Colors.purpleAccent),
+                ),
+                Expanded(
+                    child: StatCard(
+                        title: 'Pelanggan',
+                        value: '195',
+                        bgColor: Colors.orangeAccent))
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: StatCard(
+                      title: 'Tidak Terjual',
+                      value: '80',
+                      bgColor: Colors.red),
+                ),
+                Expanded(
+                    child: StatCard(
+                        title: 'Untung',
+                        value: '1,300',
+                        bgColor: Colors.greenAccent))
+              ],
+            ),
+            const Text(
               'Laporan Harian',
               style: TextStyle(
                 fontSize: 25,
               ),
             ),
             Expanded(
-              child: BarChart(BarChartData(
-                  barTouchData: barTouchData,
-                  titlesData: titlesData,
-                  borderData: borderData,
-                  barGroups: barGroups,
-                  gridData: const FlGridData(
-                      drawVerticalLine: false, drawHorizontalLine: true),
-                  maxY: 20)),
-            ),Expanded(
+              child: BarChart(
+                BarChartData(
+                    barTouchData: barTouchData,
+                    titlesData: titlesData,
+                    borderData: borderData,
+                    barGroups: barGroups,
+                    gridData: const FlGridData(
+                        drawVerticalLine: false, drawHorizontalLine: true),
+                    maxY: 20),
+              ),
+            ),
+            Expanded(
               child: BarChart(BarChartData(
                   barTouchData: barTouchData,
                   titlesData: titlesData,
@@ -159,8 +192,50 @@ class ChartScreen extends StatelessWidget {
         break;
     }
     return SideTitleWidget(
-      child: Text(text),
       axisSide: meta.axisSide,
+      child: Text(text),
+    );
+  }
+}
+
+class StatCard extends StatelessWidget {
+  String title;
+  String value;
+  Color bgColor;
+
+  StatCard({
+    required this.title,
+    required this.value,
+    required this.bgColor,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: bgColor,
+      elevation: 8,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Column(
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              value,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
